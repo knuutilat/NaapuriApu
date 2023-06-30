@@ -2,9 +2,10 @@ const mongoose = require ("mongoose");
 
 let Schema = mongoose.Schema({
     user:{type:String,index:true},
-    type:String,
-    count:Number,
-    price:Number,
+    headline:String,
+    ad:String,
+    email:String,
+    phone:String
 })
 
 module.exports = mongoose.model("item",Schema);

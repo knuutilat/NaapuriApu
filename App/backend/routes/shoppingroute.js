@@ -5,8 +5,8 @@ let router = express.Router();
 
 router.get("/shopping",function(req,res) {
     let query = {"user":req.session.user}
-    if(req.query.type) {
-        query["type"] = req.query.type;
+    if(req.query.headline) {
+        query["headline"] = req.query.headline;
     }
     itemModel.find(query).then(function(items){
         return res.status(200).json(items);
@@ -20,14 +20,15 @@ router.post("/shopping",function(req,res) {
     if(!req.body) {
         return res.status(400).json({"Message":"Bad request"})
     }
-    if(!req.body.type) {
+    if(!req.body.headline) {
         return res.status(400).json({"Message":"Bad request"})
     }
     let item = new itemModel({
         "user":req.session.user,
-        "type":req.body.type,
-        "count":req.body.count,
-        "price":req.body.price
+        "headline":req.body.headline,
+        "ad":req.body.ad,
+        "email":req.body.email,
+        "phone":req.body.price
     })
     item.save().then(function(item){
         return res.status(201).json(item)
@@ -51,13 +52,14 @@ router.put("/shopping/:id",function(req,res) {
     if(!req.body) {
         return res.status(400).json({"Message":"Bad request"})
     }
-    if(!req.body.type) {
+    if(!req.body.headline) {
         return res.status(400).json({"Message":"Bad request"})
     }
     let item = ({
-        "type":req.body.type,
-        "count":req.body.count,
-        "price":req.body.price
+        "headline":req.body.headline,
+        "ad":req.body.ad,
+        "email":req.body.email,
+        "phone":req.body.phone    
     })
     itemModel.replaceOne({"_id":req.params.id,"user":req.session.user},item).then(function(stats){
         console.log(stats);

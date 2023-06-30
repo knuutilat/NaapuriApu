@@ -3,9 +3,10 @@ import {useState} from 'react';
 const ShoppingForm = (props) => {
 
     const [state,setState] = useState({
-        type:"",
-        count:0,
-        price:0
+        headline:"",
+        ad:"",
+        email:"",
+        phone:""
     })
 
     const onChange = (event) => {
@@ -24,42 +25,50 @@ const ShoppingForm = (props) => {
         }
         props.addItem(item);
         setState({
-            type:"",
-            count:0,
-            price:0
+            headline:"",
+            ad:"",
+            email:"",
+            phone:""
+            
         })
     }
 
     return(
         <div style={{
-            "backgroundColor":"lightgreen",
             "margin":"auto",
             "width":"40%",
-            "textAlign":"center"
         }}>
-            <form className="mb-5" onSubmit={onSubmit}>
-                <label htmlFor="type" className="form-label">Type:</label>
+            <form className="mb-3" onSubmit={onSubmit}>
+                <label htmlFor="headline" className="form-label">Headline</label>
                 <input type="text"
                        className="form-control"
-                       name="type"
-                       id="type"
+                       name="headline"
+                       id="headline"
                        onChange={onChange}
-                       value={state.type}/>   
-                <label htmlFor="count" className="form-label">Count:</label>
-                <input type="number"
+                       value={state.headline}/>   
+                <label htmlFor="ad" className="form-label">Text</label>
+                <textarea type="text"
                        className="form-control"
-                       name="count"
-                       id="count"
+                       name="ad"
+                       id="ad"
+                       rows="3"
                        onChange={onChange}
-                       value={state.count}/>
-                <label htmlFor="price" className="form-label">Price:</label>
-                <input type="number"
+                       value={state.ad}/>
+                <label htmlFor="email" className="form-label">Email</label>
+                <input type="email"
                        className="form-control"
-                       name="price"
-                       id="price"
-                       step="0.01"
+                       name="email"
+                       id="email"
                        onChange={onChange}
-                       value={state.price}/>   
+                       value={state.email}/>
+                <label htmlFor="phone" className="form-label">Phone</label>
+                 <input type="text"
+                       className="form-control"
+                       name="phone"
+                       id="phone"
+                       onChange={onChange}
+                       value={state.phone}/>   
+                       
                 <input type="submit" className="btn btn-primary" value="add"/>         
             </form>
         </div>
