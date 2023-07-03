@@ -1,8 +1,6 @@
-import {useState} from 'react';
 import Card from './Card';
-import RemoveRow from './RemoveRow';
-import EditRow from './EditRow';
-const ShoppingList = (props) => {
+
+const AdvertList = (props) => {
 
     let items = props.list.map((item,index) => {
       
@@ -20,4 +18,4 @@ const ShoppingList = (props) => {
 
 }
 
-export default ShoppingList;
+export default AdvertList;

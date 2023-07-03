@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const shoppingRoute = require("./routes/shoppingroute");
@@ -5,10 +7,14 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const userModel = require("./models/user");
 const sessionModel = require("./models/session");
+const cors = require("cors");
+const cloudinary = require("./cloudinary/cloudinary");
 
 let app = express();
 
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({extended: true, limit: '50mb'}))
 
 const mongo_url = process.env.MONGODB_URL;
 const mongo_user = process.env.MONGODB_USER;
@@ -155,6 +161,26 @@ app.post ("/logout",function(req,res){
         return res.status(500).json({"Message":"Internal Server Error"});
     })
 })
+
+app.post("/", async(req,res) => {
+    const {image} = req.body;
+    const uploadedImage = await cloudinary.uploader.upload(image, { 
+    upload_preset: 'unsigned_upload',
+    allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'webp'],
+    }, 
+    function(error, result) {
+        if(error) {
+            console.log(error)
+        }
+        console.log(result); });
+
+        try {
+            res.status(200).json(uploadedImage)
+        }catch(err){
+            console.log(err);
+        }
+})
+
 app.use("/api",isUserLogged,shoppingRoute);
 
 app.listen (port);

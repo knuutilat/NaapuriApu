@@ -6,7 +6,7 @@ const Card = (props) => {
     <div class="card-body">
     <h5 class="card-title">{props.item.headline}</h5>
     <p class="card-text">{props.item.ad}</p>
-    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Card link {props.item._id}</a>
     <a href="#" class="card-link">Another link</a>
     </div>
     </div>

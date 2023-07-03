@@ -19,7 +19,7 @@ const LoginPage = (props) => {
     const onSubmit = (event) => {
         event.preventDefault();
         if(state.username.length < 4 ||state.password.length < 8) {
-            props.setError("Username must be atleast 4 characters nad password 8 characters long.");
+            props.setError("Username must be atleast 4 characters and password 8 characters long.");
             return;
         }
         let user = {
@@ -40,14 +40,14 @@ const LoginPage = (props) => {
             textAlign:"center"
         }}>
             <form className="mb-5">
-                <label htmlFor="username" className="form-label">Username</label>
+                <label htmlFor="username" className="form-label">Käyttäjätunnus</label>
                 <input type="text"
                             name="username"
                             id="username"
                             className="form-control"
                             onChange={onChange}
                             value={state.username}/>
-                <label htmlFor="password" className="form-label">Password</label>
+                <label htmlFor="password" className="form-label">Salasana</label>
                 <input type="password"
                             name="password"
                             id="password"

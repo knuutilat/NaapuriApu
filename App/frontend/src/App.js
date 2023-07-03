@@ -1,7 +1,7 @@
 import './App.css';
 import {useState,useEffect} from 'react';
-import ShoppingForm from './components/ShoppingForm';
-import ShoppingList from './components/ShoppingList';
+import ShoppingForm from './components/AdForm';
+import AdvertList from './components/AdvertList';
 import Navbar from './components/Navbar';
 import LoginPage from './components/LoginPage';
 import {Routes,Route,Navigate} from 'react-router-dom';
@@ -157,7 +157,7 @@ function App() {
             setError("Login failed."+errorMessage);
             return;
           case "getlist":
-            setError("Failed to fetch shoppinh information"+errorMessage);
+            setError("Failed to fetch the information"+errorMessage);
             return;
           case "additem":
             setError("Failed to add new item."+errorMessage);
@@ -310,7 +310,7 @@ function App() {
       <Navbar logout={logout} isLogged={state.isLogged} user={state.user}/>
       <div style={{height:25, textAlign:"center"}}>{message}</div>
       <Routes>
-        <Route path="/" element={<ShoppingList list={state.list} removeItem={removeItem}
+        <Route path="/" element={<AdvertList list={state.list} removeItem={removeItem}
         editItem={editItem} getList={getList}/>}/>
         <Route path="/form" element={<ShoppingForm addItem={addItem}/>}/>
         <Route path="*" element={<Navigate to="/"/>}/>
