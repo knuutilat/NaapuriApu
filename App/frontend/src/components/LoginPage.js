@@ -34,7 +34,6 @@ const LoginPage = (props) => {
 
     return(
         <div style={{
-            backgroundColor:"lightblue",
             width:"40%",
             margin:"auto",
             textAlign:"center"

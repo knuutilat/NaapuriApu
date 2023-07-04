@@ -5,6 +5,7 @@ import AdvertList from './components/AdvertList';
 import Navbar from './components/Navbar';
 import LoginPage from './components/LoginPage';
 import {Routes,Route,Navigate} from 'react-router-dom';
+import AdForm from './components/AdForm';
 
 function App() {
 
@@ -312,7 +313,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AdvertList list={state.list} removeItem={removeItem}
         editItem={editItem} getList={getList}/>}/>
-        <Route path="/form" element={<ShoppingForm addItem={addItem}/>}/>
+        <Route path="/form" element={<AdForm addItem={addItem}/>}/>
         <Route path="*" element={<Navigate to="/"/>}/>
 
       </Routes>

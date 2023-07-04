@@ -2,13 +2,13 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
-const shoppingRoute = require("./routes/shoppingroute");
+const advert = require("./routes/advert");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const userModel = require("./models/user");
 const sessionModel = require("./models/session");
 const cors = require("cors");
-const cloudinary = require("./cloudinary/cloudinary");
+const cloudinary = require("./utils/cloudinary");
 
 let app = express();
 
@@ -181,7 +181,7 @@ app.post("/", async(req,res) => {
         }
 })
 
-app.use("/api",isUserLogged,shoppingRoute);
+app.use("/api",isUserLogged,advert);
 
 app.listen (port);
 console.log("Running in port",port);

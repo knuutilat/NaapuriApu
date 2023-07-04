@@ -28,7 +28,8 @@ router.post("/shopping",function(req,res) {
         "headline":req.body.headline,
         "ad":req.body.ad,
         "email":req.body.email,
-        "phone":req.body.price
+        "phone":req.body.phone,
+        "cloudinary_id":req.body.cloudinary_id
     })
     item.save().then(function(item){
         return res.status(201).json(item)
@@ -71,5 +72,5 @@ router.put("/shopping/:id",function(req,res) {
 })
 
 
-
 module.exports = router;
+

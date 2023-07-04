@@ -1,11 +1,11 @@
-import Card from './Card';
+import AdCard from './AdCard';
 
 const AdvertList = (props) => {
 
     let items = props.list.map((item,index) => {
       
         return(
-            <Card key={item._id} item={item} index={index} />
+            <AdCard key={item._id} item={item} index={index} />
         )
     })
 

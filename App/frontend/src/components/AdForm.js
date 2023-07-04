@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import Img from "./Img";
+import FormControl from '@mui/material/FormControl';
+import { FormLabel, InputLabel, Input, TextField, Button } from "@mui/material";
 
 
 
@@ -14,7 +16,8 @@ const AdForm = (props) => {
         headline:"",
         ad:"",
         email:"",
-        phone:""
+        phone:"",
+        cloudinary_id:uploadedImg  
     })
 
     function previewFiles(file){
@@ -42,88 +45,86 @@ const AdForm = (props) => {
         previewFiles(file)
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const result = await axios.post("http://localhost:3001", {
-            image: image
-        })
-        try{
-            const uploadedImg = result.data.public_id;
-            setUpload(uploadedImg);
-        } catch(err) {
-            console.log(err);
-        }
-    }
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
         
         let item = {
             ...state
         }
-        props.addItem(item);
-        setState({
-            headline:"",
-            ad:"",
-            email:"",
-            phone:""
-            
+
+        const result = await axios.post("http://localhost:3001", {
+            image: image
         })
+
+        try{
+            const uploadedImg = result.data.public_id;
+            setUpload(uploadedImg);
+            console.log(uploadedImg);
+            item.cloudinary_id = uploadedImg;
+            props.addItem(item);
+            setState({
+                headline:"",
+                ad:"",
+                email:"",
+                phone:"",
+                cloudinary_id:uploadedImg           
+        })
+        } catch(err) {
+            console.log(err);
+        }
+       
+        
     }
 
     return(
-        <div style={{
-            "margin":"auto",
-            "width":"40%",
-        }}> <form onSubmit={e=>handleSubmit(e)}>
-                <label htmlFor="fileInput">Lisää kuva</label>
-                <input type="file"
+   <>
+            <FormControl>
+                <FormLabel htmlFor="fileInput">Lisää kuva</FormLabel>
+                <Input type="file"
                         className="form-control"
-                        id="fileinput"
+                        id="outlined-multiline-flexible"
                         onChange={e=> handleChange(e)}
                         required accept="image/png,
-                        image/jpeg, image/jpg, image/jfif"/>    
-                <button className="btn btn-primary">Submit</button>
-        </form>
-            <form className="mb-3" onSubmit={onSubmit}>
-                             
-                <label htmlFor="headline" className="form-label">Otsikko</label>
-                <input type="text"
+                        image/jpeg, image/jpg, image/jfif"/>                 
+                <FormLabel htmlFor="headline">Otsikko</FormLabel>
+                <TextField type="text"
                        className="form-control"
                        name="headline"
-                       id="headline"
+                       id="outlined-multiline-flexible"
                        onChange={onChange}
                        value={state.headline}/>   
-                <label htmlFor="ad" className="form-label">Teksti</label>
-                <textarea type="text"
+                <FormLabel htmlFor="ad" >Teksti</FormLabel>
+                <TextField type="text"
                        className="form-control"
                        name="ad"
-                       id="ad"
-                       rows="3"
+                       id="outlined-multiline-flexible"
+                       multiline
+                       rows={6}
                        onChange={onChange}
                        value={state.ad}/>
-                <label htmlFor="email" className="form-label">Sähköposti</label>
-                <input type="email"
+                <FormLabel htmlFor="email">Sähköposti</FormLabel>
+                <TextField type="email"
                        className="form-control"
                        name="email"
-                       id="email"
+                       id="outlined-multiline-flexible"
                        onChange={onChange}
                        value={state.email}/>
-                <label htmlFor="phone" className="form-label">Puhelin</label>
-                 <input type="text"
+                <FormLabel htmlFor="phone" >Puhelin</FormLabel>
+                 <TextField type="text"
                        className="form-control"
                        name="phone"
-                       id="phone"
+                       id="outlined-multiline-flexible"
                        onChange={onChange}
-                       value={state.phone}/>   
-                       
-                <input type="submit" className="btn btn-primary" value="add"/>         
-            </form>
+                       value={state.phone}/>       
+                <Button onClick={onSubmit} type="submit" variant="contained">Lisää</Button>      
+            </FormControl>
             <img src={image} alt=""/>
+            <br/>
             <Img uploadedImg={uploadedImg}/>
             
-        </div>
-        
+       
+            </>
     )
 }
 
