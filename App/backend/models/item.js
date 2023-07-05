@@ -6,7 +6,8 @@ let Schema = mongoose.Schema({
     ad:String,
     email:String,
     phone:String,
-    cloudinary_id:String
+    cloudinary_id:String,
+    category:String
 })
 
 module.exports = mongoose.model("item",Schema);

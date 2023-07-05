@@ -3,7 +3,7 @@ const itemModel = require("../models/item");
 
 let router = express.Router();
 
-router.get("/shopping",function(req,res) {
+router.get("/advert",function(req,res) {
     let query = {"user":req.session.user}
     if(req.query.headline) {
         query["headline"] = req.query.headline;
@@ -16,7 +16,7 @@ router.get("/shopping",function(req,res) {
     })
 })
 
-router.post("/shopping",function(req,res) {
+router.post("/advert",function(req,res) {
     if(!req.body) {
         return res.status(400).json({"Message":"Bad request"})
     }
@@ -29,7 +29,8 @@ router.post("/shopping",function(req,res) {
         "ad":req.body.ad,
         "email":req.body.email,
         "phone":req.body.phone,
-        "cloudinary_id":req.body.cloudinary_id
+        "cloudinary_id":req.body.cloudinary_id,
+        "category":req.body.category
     })
     item.save().then(function(item){
         return res.status(201).json(item)
@@ -39,7 +40,7 @@ router.post("/shopping",function(req,res) {
     })
 })
 
-router.delete("/shopping/:id",function(req,res) {
+router.delete("/advert/:id",function(req,res) {
     itemModel.deleteOne({"_id":req.params.id,"user":req.session.user}).then(function(stats) {
         console.log(stats);
         return res.status(200).json({"Message":"Success"})
@@ -49,7 +50,7 @@ router.delete("/shopping/:id",function(req,res) {
     })
 })
 
-router.put("/shopping/:id",function(req,res) {
+router.put("/advert/:id",function(req,res) {
     if(!req.body) {
         return res.status(400).json({"Message":"Bad request"})
     }

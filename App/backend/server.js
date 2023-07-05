@@ -162,6 +162,7 @@ app.post ("/logout",function(req,res){
     })
 })
 
+// CLOUDINARY
 app.post("/", async(req,res) => {
     const {image} = req.body;
     const uploadedImage = await cloudinary.uploader.upload(image, { 

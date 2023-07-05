@@ -84,7 +84,7 @@ function App() {
       const response = await fetch(urlRequest.url,urlRequest.request);
       setLoading(false);
       if(!response) {
-        clearState("No rServer never responded. Logging you out. Try again later.");
+        clearState("No server never responded. Logging you out. Try again later.");
         return;
 
       }
@@ -189,12 +189,12 @@ function App() {
     if(token) {
       tempToken = token;
     }
-    let url = "/api/shopping";
+    let url = "/api/advert";
     if(search) {
       url = url + "?type="+search;
     }
     setUrlRequest({
-      url:"/api/shopping",
+      url:"/api/advert",
       request:{
         "method":"GET",
         "headers":{
@@ -207,7 +207,7 @@ function App() {
 
   const addItem = (item) => {
     setUrlRequest({
-      url:"/api/shopping",
+      url:"/api/advert",
       request:{
         "method":"POST",
         "headers":{
@@ -222,7 +222,7 @@ function App() {
 
   const removeItem = (id) => {
     setUrlRequest({
-      url:"/api/shopping/"+id,
+      url:"/api/advert/"+id,
       request:{
         "method":"DELETE",
         "headers":{
@@ -235,7 +235,7 @@ function App() {
 
   const editItem = (item) => {
     setUrlRequest({
-      url:"/api/shopping/"+item._id,
+      url:"/api/advert/"+item._id,
       request:{
         "method":"PUT",
         "headers":{

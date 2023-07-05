@@ -31,7 +31,6 @@ const AdCard = (props) => {
     <div class="card" style={{margin:'auto', width: '60%', marginBottom:'40px'}}>
     <Card raised="true" sx={{ 
       maxWidth: 405,
-
       margin: 'auto',
       textAlign:'left' }}>
     <CardActionArea>
