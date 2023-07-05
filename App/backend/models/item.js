@@ -1,13 +1,13 @@
-const mongoose = require ("mongoose");
+const mongoose = require("mongoose");
 
 let Schema = mongoose.Schema({
-    user:{type:String,index:true},
-    headline:String,
-    ad:String,
-    email:String,
-    phone:String,
-    cloudinary_id:String,
-    category:String
-})
+  user: { type: String, index: true },
+  headline: String,
+  ad: String,
+  email: String,
+  phone: String,
+  cloudinary_id: String,
+  category: String,
+});
 
-module.exports = mongoose.model("item",Schema);
+module.exports = mongoose.model("item", Schema);
