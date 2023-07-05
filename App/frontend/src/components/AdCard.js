@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import { TextAlignment } from '@cloudinary/url-gen/qualifiers';
 
 const AdCard = (props) => {
 
@@ -28,10 +29,11 @@ const AdCard = (props) => {
     </div>
     </div> */
     <div class="card" style={{margin:'auto', width: '60%', marginBottom:'40px'}}>
-    <Card sx={{ 
+    <Card raised="true" sx={{ 
       maxWidth: 405,
-      backgroundColor: 'rgba(76, 75, 80, 0.1)',
-      margin: 'auto' }}>
+      
+      margin: 'auto',
+      textAlign:'left' }}>
     <CardActionArea>
     <AdvancedImage cldImg={myImage} />
       <CardContent>
@@ -45,7 +47,7 @@ const AdCard = (props) => {
     </CardActionArea>
     <CardActions>
       <Button size="small" color="primary">
-        Share
+        Ota yhteyttä
       </Button>
     </CardActions>
   </Card>
