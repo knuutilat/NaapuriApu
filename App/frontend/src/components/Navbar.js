@@ -103,10 +103,10 @@ return (
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h8" component="div" sx={{flexGrow:0.1 }}>
+          <Typography variant="h8" component="div" sx={{flexGrow:1 }}>
           <Link style={{textDecoration:'none', color:'white'}} to="/">ILMOITUKSET</Link>
           </Typography>
-          <Typography variant="h8" component="div" sx={{ flexGrow:0.1 }}>
+          <Typography variant="h8" component="div" sx={{ flexGrow:1 }}>
           <Link style={{textDecoration:'none', color:'white'}} to="/form" >LISÄÄ ILMOITUS</Link>
           </Typography>
           <Search>

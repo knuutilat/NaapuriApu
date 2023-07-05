@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import FormControl from '@mui/material/FormControl';
+import { FormLabel, InputLabel, Input, TextField, Button, Card } from "@mui/material";
 
 const LoginPage = (props) => {
     
@@ -33,29 +35,28 @@ const LoginPage = (props) => {
     }
 
     return(
-        <div style={{
-            width:"40%",
-            margin:"auto",
-            textAlign:"center"
-        }}>
-            <form className="mb-5">
-                <label htmlFor="username" className="form-label">Käyttäjätunnus</label>
-                <input type="text"
-                            name="username"
-                            id="username"
-                            className="form-control"
-                            onChange={onChange}
-                            value={state.username}/>
-                <label htmlFor="password" className="form-label">Salasana</label>
-                <input type="password"
-                            name="password"
-                            id="password"
-                            className="form-control"
-                            onChange={onChange}
-                            value={state.password}/>
-                <button name="register" onClick={onSubmit} style={{marginRight:5}} className="btn btn-secondary">Register</button>
-                <button name="login" onClick={onSubmit} style={{marginLeft:5}} className="btn btn-secondary">Login</button>
-            </form>
+        <div>
+            <FormControl sx= {{
+                marginTop:'10em'
+            }}>
+                <FormLabel htmlFor="username">Käyttäjätunnus</FormLabel>
+                <TextField type="text"
+                       className="form-control"
+                       name="username"
+                       id="outlined-multiline-flexible"
+                       onChange={onChange}
+                       value={state.username}/> 
+                <FormLabel htmlFor="password">Salasana</FormLabel>
+                <TextField type="password"
+                       className="form-control"
+                       name="password"
+                       id="outlined-multiline-flexible"
+                       onChange={onChange}
+                       value={state.password}/> 
+                <Button sx={{marginTop:'10px', marginBottom:'10px'}}name="login" onClick={onSubmit} type="submit" variant="contained">Kirjaudu</Button>  
+                <Button name="register" onClick={onSubmit} type="submit" variant="contained">Rekisteröidy</Button>  
+                
+            </FormControl>
         </div>
     )
 }
