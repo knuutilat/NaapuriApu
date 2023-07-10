@@ -5,9 +5,10 @@ import FormControl from "@mui/material/FormControl";
 import { FormLabel, InputLabel, Input, TextField, Button } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import * as React from 'react';
 
 const AdForm = (props) => {
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = React.useState("");
   const [file, setfile] = useState("");
   const [image, setImage] = useState("");
   const [uploadedImg, setUpload] = useState("");
@@ -17,7 +18,7 @@ const AdForm = (props) => {
     email: "",
     phone: "",
     cloudinary_id: uploadedImg,
-    category: category,
+    category: category
   });
 
   function previewFiles(file) {
@@ -30,6 +31,7 @@ const AdForm = (props) => {
   }
 
   const onChange = (event) => {
+    setCategory(event.target.value);
     setState((state) => {
       return {
         ...state,
@@ -60,6 +62,8 @@ const AdForm = (props) => {
       setUpload(uploadedImg);
       console.log(uploadedImg);
       item.cloudinary_id = uploadedImg;
+      setCategory(category);
+      item.category = category;
       props.addItem(item);
       setState({
         headline: "",
@@ -111,12 +115,12 @@ const AdForm = (props) => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={state.category}
           label="Category"
           onChange={onChange}
+          value={category}
         >
-          <MenuItem value={10}>Tarjoa</MenuItem>
-          <MenuItem value={20}>Tarve</MenuItem>
+          <MenuItem value={"Tarjoa"}>Tarjoa</MenuItem>
+          <MenuItem value={"Tarve"}>Tarve</MenuItem>
         </Select>
         <FormLabel htmlFor="email">Sähköposti</FormLabel>
         <TextField
