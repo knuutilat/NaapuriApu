@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import Img from "./Img";
 import FormControl from "@mui/material/FormControl";
 import { FormLabel, InputLabel, Input, TextField, Button, InputBase } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
