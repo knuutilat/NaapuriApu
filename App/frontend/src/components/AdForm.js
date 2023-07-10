@@ -1,10 +1,21 @@
 import { useState } from "react";
 import axios from "axios";
 import FormControl from "@mui/material/FormControl";
-import { FormLabel, InputLabel, Input, TextField, Button, InputBase } from "@mui/material";
+import {
+  FormLabel,
+  InputLabel,
+  Input,
+  TextField,
+  Button,
+  InputBase,
+  Avatar,
+} from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import * as React from 'react';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { Skeleton } from "@mui/material";
+
 const AdForm = (props) => {
   const [file, setfile] = useState("");
   const [image, setImage] = useState("");
@@ -16,14 +27,13 @@ const AdForm = (props) => {
     phone: "",
     cloudinary_id: uploadedImg,
     category: "",
-    date: ""
+    date: "",
   });
 
   const current = new Date();
-  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-  
-
-  
+  const date = `${current.getDate()}/${
+    current.getMonth() + 1
+  }/${current.getFullYear()}`;
 
   function previewFiles(file) {
     const reader = new FileReader();
@@ -38,7 +48,7 @@ const AdForm = (props) => {
     setState((state) => {
       return {
         ...state,
-        [event.target.name]: event.target.value      
+        [event.target.name]: event.target.value,
       };
     });
   };
@@ -51,7 +61,7 @@ const AdForm = (props) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    
+
     let item = {
       ...state,
     };
@@ -74,7 +84,7 @@ const AdForm = (props) => {
         phone: "",
         cloudinary_id: uploadedImg,
         category: "",
-        date: ""
+        date: "",
       });
     } catch (err) {
       console.log(err);
@@ -82,77 +92,116 @@ const AdForm = (props) => {
   };
 
   return (
-    <>
-    
-      <FormControl>
-        <FormLabel htmlFor="fileInput">Lisää kuva</FormLabel>
-        <InputBase
-          type="file"
-          className="form-control"
-          id="outlined-multiline-flexible"
-          onChange={(e) => handleChange(e)}
-          required
-          accept="image/png, image/jpeg, image/jpg, image/jfif"
+    <FormControl>
+      {image ? (
+        <img
+          style={{
+            objectFit: "cover",
+            margin: "auto",
+            height: "300px",
+            width: "600px",
+          }}
+          src={image}
+          alt=""
         />
-        <FormLabel htmlFor="headline">Otsikko</FormLabel>
+      ) : (
+        <Skeleton
+          variant="rect"
+          sx={{ margin: "auto" }}
+          width={640}
+          height={200}
+        ></Skeleton>
+      )}
+      <InputBase
+        type="file"
+        className="form-control"
+        id="outlined-multiline-flexible"
+        onChange={(e) => handleChange(e)}
+        required
+        accept="image/png, image/jpeg, image/jpg, image/jfif"
+        sx={{ margin: "auto", padding: "10px" }}
+      />
+      <Box
+        component="form"
+        sx={{
+          "& > :not(style)": { m: 1, width: "35ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
         <TextField
           type="text"
           className="form-control"
           name="headline"
+          label="Otsikko"
           id="outlined-multiline-flexible"
           onChange={onChange}
           value={state.headline}
+          sx={{margin:"auto"}}
+     
         />
-        <FormLabel htmlFor="ad">Teksti</FormLabel>
-        <TextField
-          type="text"
-          className="form-control"
-          name="ad"
-          id="outlined-multiline-flexible"
-          multiline
-          rows={6}
-          onChange={onChange}
-          value={state.ad}
-        />
-        <FormLabel htmlFor="category">Kategoria</FormLabel>
         <Select
-          type="text"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           name="category"
-          label="Category"
+          label="Kategoria"
           onChange={onChange}
           value={state.category}
+          
+  
         >
           <MenuItem value={"Tarjoa"}>Tarjoa</MenuItem>
           <MenuItem value={"Tarve"}>Tarve</MenuItem>
         </Select>
-        <FormLabel htmlFor="email">Sähköposti</FormLabel>
+      </Box>
+      <TextField
+        type="text"
+        className="form-control"
+        name="ad"
+        id="outlined-multiline-flexible"
+        label="Ilmoitusteksti"
+        multiline
+        rows={6}
+        onChange={onChange}
+        value={state.ad}
+        sx={{ margin: "auto", width: "630px", marginTop:"10px" }}
+      />
+      <Box
+        component="form"
+        sx={{
+          "& > :not(style)": { m: 1, width: "35.4ch", marginTop:"20px" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
         <TextField
           type="email"
           className="form-control"
+          label="Sähköposti"
           name="email"
           id="outlined-multiline-flexible"
           onChange={onChange}
           value={state.email}
         />
-        <FormLabel htmlFor="phone">Puhelin</FormLabel>
         <TextField
           type="text"
           className="form-control"
           name="phone"
+          label="Puhelin"
           id="outlined-multiline-flexible"
           onChange={onChange}
           value={state.phone}
         />
-        <Button onClick={onSubmit} type="submit" variant="contained">
-          Lisää
-        </Button>
-      </FormControl>
-      <img src={image} alt="" />
-      <h1>Current date is {date}</h1>
-      <br />
-    </>
+      </Box>
+      <Button
+        sx={{ m: "auto", width: "40ch", marginTop:"20px" }}
+        onClick={onSubmit}
+        type="submit"
+        variant="contained"
+      >
+        Lisää
+      </Button>
+    </FormControl>
   );
 };
 

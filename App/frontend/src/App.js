@@ -301,13 +301,8 @@ function App() {
     });
 
   // RENDERING
-  const [open, setOpen] = React.useState(true);
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const open = true;
+ 
 
   let message = <h4></h4>;
   if (state.loading) { return(

@@ -7,7 +7,6 @@ const AdvertList = (props) => {
 
   return (
     <div>
-      <h3>Ilmoitukset</h3>
       {items}
     </div>
   );

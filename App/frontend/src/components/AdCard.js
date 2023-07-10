@@ -9,7 +9,7 @@ import { fill } from "@cloudinary/url-gen/actions/resize";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import { red } from "@mui/material/colors";
+import { red, grey } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const AdCard = (props) => {
@@ -21,7 +21,7 @@ const AdCard = (props) => {
   const adImage = props.item.cloudinary_id;
   const myImage = cld.image(adImage);
 
-  myImage.resize(fill().width(605).height(400));
+  myImage.resize(fill().width(605).height(300));
 
   return (
     <Card
@@ -34,8 +34,9 @@ const AdCard = (props) => {
       }}
     >
       <CardHeader
+        sx={{ backgroundColor: "lightgrey" }}
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: grey[500] }} aria-label="recipe">
             R
           </Avatar>
         }
@@ -50,17 +51,33 @@ const AdCard = (props) => {
       <CardActionArea>
         <AdvancedImage cldImg={myImage} />
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: "4",
+              WebkitBoxOrient: "vertical",
+            }}
+            variant="body2"
+            color="text.secondary"
+          >
             {props.item.ad}
+          </Typography>
+          <br />
+          <Typography variant="body2" color="text.secondary">
+            Yhteystiedot: <br />
+            Puhelin: {props.item.phone} <br />
+            Sähköposti: {props.item.email}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ backgroundColor: "lightgrey" }}>
         <Button sx={{ float: "left" }} size="small" color="primary">
-          Ota yhteyttä
+          Lue lisää
         </Button>
         <Typography
-          sx={{ float: "right" }}
+          sx={{ marginLeft: "400px" }}
           variant="body2"
           color="text.secondary"
         >

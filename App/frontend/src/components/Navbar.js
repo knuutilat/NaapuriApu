@@ -11,40 +11,6 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
 const Navbar = (props) => {
-  /*
-if (props.isLogged){
-    return(
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <p className="navbar-brand" style={{marginLeft:10}}>NaapuriApu</p>
-            <ul className="navbar-nav">
-                <li className="nav-item" style={{marginLeft:10}}>
-                    <Link to="/" className="nav-link">Ilmoitukset</Link>
-                </li>
-                <li className="nav-item" style={{marginLeft:10}}>
-                    <Link to="/form" className="nav-link">Lisää ilmoitus</Link>
-                </li>
-                <li className="nav-item" style={{marginLeft:10}}>
-                    <Link to="/" className="nav-link" onClick={props.logout}>Kirjaudu ulos</Link>
-                </li>
-                <li className="nav-item" style={{marginLeft:10}}>
-                    <p className="nav-link" style={{color:"green"}}>Kirjautuneena käyttäjänimellä {props.user}</p>
-                </li>
-            </ul>
-        </nav>
-    )
-    }   else {
-        return(
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <p className="navbar-brand" style={{marginleft:10}}>NaapuriApu</p>
-                <ul className="navbar-nav">
-
-                </ul>
-    
-            </nav>
-    )
-} 
-*/
-
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -104,7 +70,7 @@ if (props.isLogged){
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <Typography>NaapuriApu</Typography>
           </IconButton>
           <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
@@ -127,7 +93,13 @@ if (props.isLogged){
           </Search>
           <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
             <Link
-              style={{ textDecoration: "none", color: "white" }}
+              style={{
+                fontWeight: "semibold",
+                fontSize: "0.9em",
+                textDecoration: "none",
+                color: "white",
+                float: "right",
+              }}
               to="/form"
               onClick={props.logout}
             >
