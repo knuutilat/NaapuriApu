@@ -2,13 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import Img from "./Img";
 import FormControl from "@mui/material/FormControl";
-import { FormLabel, InputLabel, Input, TextField, Button } from "@mui/material";
+import { FormLabel, InputLabel, Input, TextField, Button, InputBase } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import * as React from 'react';
-
 const AdForm = (props) => {
-  const [category, setCategory] = React.useState("");
   const [file, setfile] = useState("");
   const [image, setImage] = useState("");
   const [uploadedImg, setUpload] = useState("");
@@ -18,8 +16,15 @@ const AdForm = (props) => {
     email: "",
     phone: "",
     cloudinary_id: uploadedImg,
-    category: category
+    category: "",
+    date: ""
   });
+
+  const current = new Date();
+  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+  
+
+  
 
   function previewFiles(file) {
     const reader = new FileReader();
@@ -31,11 +36,10 @@ const AdForm = (props) => {
   }
 
   const onChange = (event) => {
-    setCategory(event.target.value);
     setState((state) => {
       return {
         ...state,
-        [event.target.name]: event.target.value,
+        [event.target.name]: event.target.value      
       };
     });
   };
@@ -48,7 +52,7 @@ const AdForm = (props) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
+    
     let item = {
       ...state,
     };
@@ -62,8 +66,7 @@ const AdForm = (props) => {
       setUpload(uploadedImg);
       console.log(uploadedImg);
       item.cloudinary_id = uploadedImg;
-      setCategory(category);
-      item.category = category;
+      item.date = date;
       props.addItem(item);
       setState({
         headline: "",
@@ -71,7 +74,8 @@ const AdForm = (props) => {
         email: "",
         phone: "",
         cloudinary_id: uploadedImg,
-        category: category,
+        category: "",
+        date: ""
       });
     } catch (err) {
       console.log(err);
@@ -80,16 +84,16 @@ const AdForm = (props) => {
 
   return (
     <>
+    
       <FormControl>
         <FormLabel htmlFor="fileInput">Lisää kuva</FormLabel>
-        <Input
+        <InputBase
           type="file"
           className="form-control"
           id="outlined-multiline-flexible"
           onChange={(e) => handleChange(e)}
           required
-          accept="image/png,
-                        image/jpeg, image/jpg, image/jfif"
+          accept="image/png, image/jpeg, image/jpg, image/jfif"
         />
         <FormLabel htmlFor="headline">Otsikko</FormLabel>
         <TextField
@@ -113,11 +117,13 @@ const AdForm = (props) => {
         />
         <FormLabel htmlFor="category">Kategoria</FormLabel>
         <Select
+          type="text"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
+          name="category"
           label="Category"
           onChange={onChange}
-          value={category}
+          value={state.category}
         >
           <MenuItem value={"Tarjoa"}>Tarjoa</MenuItem>
           <MenuItem value={"Tarve"}>Tarve</MenuItem>
@@ -145,8 +151,8 @@ const AdForm = (props) => {
         </Button>
       </FormControl>
       <img src={image} alt="" />
+      <h1>Current date is {date}</h1>
       <br />
-      <Img uploadedImg={uploadedImg} />
     </>
   );
 };

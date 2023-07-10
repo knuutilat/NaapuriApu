@@ -316,9 +316,6 @@ function App() {
             element={
               <AdvertList
                 list={state.list}
-                removeItem={removeItem}
-                editItem={editItem}
-                getList={getList}
               />
             }
           />

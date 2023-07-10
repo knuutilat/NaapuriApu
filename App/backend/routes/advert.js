@@ -34,6 +34,7 @@ router.post("/advert", function (req, res) {
     phone: req.body.phone,
     cloudinary_id: req.body.cloudinary_id,
     category: req.body.category,
+    date: req.body.date
   });
   item
     .save()
@@ -59,29 +60,5 @@ router.delete("/advert/:id", function (req, res) {
     });
 });
 
-router.put("/advert/:id", function (req, res) {
-  if (!req.body) {
-    return res.status(400).json({ Message: "Bad request" });
-  }
-  if (!req.body.headline) {
-    return res.status(400).json({ Message: "Bad request" });
-  }
-  let item = {
-    headline: req.body.headline,
-    ad: req.body.ad,
-    email: req.body.email,
-    phone: req.body.phone,
-  };
-  itemModel
-    .replaceOne({ _id: req.params.id, user: req.session.user }, item)
-    .then(function (stats) {
-      console.log(stats);
-      return res.status(201).json({ Message: "Success" });
-    })
-    .catch(function (err) {
-      console.log(err);
-      return res.status(500).json({ Message: "Internal server error" });
-    });
-});
 
 module.exports = router;

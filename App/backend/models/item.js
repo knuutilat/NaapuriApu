@@ -8,6 +8,7 @@ let Schema = mongoose.Schema({
   phone: String,
   cloudinary_id: String,
   category: String,
+  date: Date
 });
 
 module.exports = mongoose.model("item", Schema);
