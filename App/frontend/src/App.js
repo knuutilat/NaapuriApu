@@ -6,10 +6,10 @@ import Navbar from "./components/Navbar";
 import LoginPage from "./components/LoginPage";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AdForm from "./components/AdForm";
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-import Button from '@mui/material/Button';
-import * as React from 'react';
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
+import * as React from "react";
 
 function App() {
   const [state, setState] = useState({
@@ -302,36 +302,33 @@ function App() {
 
   // RENDERING
   const open = true;
- 
-
   let message = <h4></h4>;
-  if (state.loading) { return(
-    <div className="App">
-    <Navbar logout={logout} isLogged={state.isLogged} user={state.user} />
-    <div style={{ height: 25, textAlign: "center" }}>{message}</div>
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <LoginPage
-            login={login}
-            register={register}
-            setError={setError}
+  if (state.loading) {
+    return (
+      <div className="App">
+        <Navbar logout={logout} isLogged={state.isLogged} user={state.user} />
+        <div style={{ height: 25, textAlign: "center" }}>{message}</div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LoginPage
+                login={login}
+                register={register}
+                setError={setError}
+              />
+            }
           />
-        }
-      />
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
-    <Backdrop
-      sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      open={open}
-    >
-      <CircularProgress color="inherit" />
-    </Backdrop>
-  </div>
-  
-
-  )
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
+    );
   }
   if (state.error) {
     message = <h4>{state.error}</h4>;
@@ -342,14 +339,7 @@ function App() {
         <Navbar logout={logout} isLogged={state.isLogged} user={state.user} />
         <div style={{ height: 25, textAlign: "center" }}>{message}</div>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <AdvertList
-                list={state.list}
-              />
-            }
-          />
+          <Route path="/" element={<AdvertList list={state.list} />} />
           <Route path="/form" element={<AdForm addItem={addItem} />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

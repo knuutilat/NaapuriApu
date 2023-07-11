@@ -9,7 +9,7 @@ import { fill } from "@cloudinary/url-gen/actions/resize";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import { grey } from "@mui/material/colors";
+import { red, grey } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const AdCard = (props) => {

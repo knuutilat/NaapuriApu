@@ -41,7 +41,7 @@ const LoginPage = (props) => {
 
   return (
     <div>
-      <FormControl
+      <FormControl 
         sx={{
           marginTop: "10em",
         }}

@@ -2,16 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import FormControl from "@mui/material/FormControl";
 import {
-  FormLabel,
-  InputLabel,
-  Input,
   TextField,
   Button,
   InputBase,
-  Avatar,
 } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { Skeleton } from "@mui/material";
@@ -73,7 +69,6 @@ const AdForm = (props) => {
     try {
       const uploadedImg = result.data.public_id;
       setUpload(uploadedImg);
-      console.log(uploadedImg);
       item.cloudinary_id = uploadedImg;
       item.date = date;
       props.addItem(item);
@@ -99,7 +94,7 @@ const AdForm = (props) => {
             objectFit: "cover",
             margin: "auto",
             height: "300px",
-            width: "600px",
+            width: "640px",
           }}
           src={image}
           alt=""
@@ -109,7 +104,7 @@ const AdForm = (props) => {
           variant="rect"
           sx={{ margin: "auto" }}
           width={640}
-          height={200}
+          height={300}
         ></Skeleton>
       )}
       <InputBase
@@ -137,8 +132,7 @@ const AdForm = (props) => {
           id="outlined-multiline-flexible"
           onChange={onChange}
           value={state.headline}
-          sx={{margin:"auto"}}
-     
+          sx={{ margin: "auto" }}
         />
         <Select
           labelId="demo-simple-select-label"
@@ -147,8 +141,6 @@ const AdForm = (props) => {
           label="Kategoria"
           onChange={onChange}
           value={state.category}
-          
-  
         >
           <MenuItem value={"Tarjoa"}>Tarjoa</MenuItem>
           <MenuItem value={"Tarve"}>Tarve</MenuItem>
@@ -164,12 +156,12 @@ const AdForm = (props) => {
         rows={6}
         onChange={onChange}
         value={state.ad}
-        sx={{ margin: "auto", width: "630px", marginTop:"10px" }}
+        sx={{ margin: "auto", width: "630px", marginTop: "10px" }}
       />
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "35.4ch", marginTop:"20px" },
+          "& > :not(style)": { m: 1, width: "35.4ch", marginTop: "20px" },
         }}
         noValidate
         autoComplete="off"
@@ -194,7 +186,7 @@ const AdForm = (props) => {
         />
       </Box>
       <Button
-        sx={{ m: "auto", width: "40ch", marginTop:"20px" }}
+        sx={{ m: "auto", width: "40ch", marginTop: "20px" }}
         onClick={onSubmit}
         type="submit"
         variant="contained"
