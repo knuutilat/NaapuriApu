@@ -1,16 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 import FormControl from "@mui/material/FormControl";
-import {
-  TextField,
-  Button,
-  InputBase,
-} from "@mui/material";
+import { TextField, Button, InputBase } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { Skeleton } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
 
 const AdForm = (props) => {
   const [file, setfile] = useState("");
@@ -79,7 +78,7 @@ const AdForm = (props) => {
         phone: "",
         cloudinary_id: uploadedImg,
         category: "",
-        date: "",
+        date: ""
       });
     } catch (err) {
       console.log(err);
@@ -116,6 +115,10 @@ const AdForm = (props) => {
         accept="image/png, image/jpeg, image/jpg, image/jfif"
         sx={{ margin: "auto", padding: "10px" }}
       />
+      <FormGroup>
+        <FormControlLabel control={<Checkbox />} label="Tarjoa" />
+        <FormControlLabel control={<Checkbox />} label="Tarve" />
+      </FormGroup>
       <Box
         component="form"
         sx={{
@@ -142,8 +145,9 @@ const AdForm = (props) => {
           onChange={onChange}
           value={state.category}
         >
-          <MenuItem value={"Tarjoa"}>Tarjoa</MenuItem>
-          <MenuItem value={"Tarve"}>Tarve</MenuItem>
+          <MenuItem value={"Lainaa"}>Lainaa</MenuItem>
+          <MenuItem value={"Kierrätä"}>Kierrätä</MenuItem>
+          <MenuItem value={"Apu"}>Apu</MenuItem>
         </Select>
       </Box>
       <TextField

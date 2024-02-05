@@ -9,10 +9,10 @@ import { fill } from "@cloudinary/url-gen/actions/resize";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import { red, grey } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-const AdCard = (props) => {
+const MiniCard = (props) => {
   const cld = new Cloudinary({
     cloud: {
       cloudName: "dk5czgifq",
@@ -21,13 +21,14 @@ const AdCard = (props) => {
   const adImage = props.item.cloudinary_id;
   const myImage = cld.image(adImage);
 
-  myImage.resize(fill().width(605).height(300));
+  myImage.resize(fill().width(400).height(200));
 
   return (
     <Card
       raised="true"
       sx={{
-        maxWidth: 605,
+        maxWidth: 400,
+        maxHeight: 600,
         margin: "auto",
         textAlign: "left",
         marginBottom: "50px",
@@ -88,4 +89,4 @@ const AdCard = (props) => {
   );
 };
 
-export default AdCard;
+export default MiniCard;

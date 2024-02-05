@@ -10,9 +10,9 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
-const Navbar = (props) => {
+const SearchBar = (props) => {
   const Search = styled("div")(({ theme }) => ({
-    position: "relative",
+    position: "absolute",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     "&:hover": {
@@ -45,9 +45,9 @@ const Navbar = (props) => {
       transition: theme.transitions.create("width"),
       width: "100%",
       [theme.breakpoints.up("sm")]: {
-        width: "12ch",
+        width: "140ch",
         "&:focus": {
-          width: "20ch",
+          width: "160ch",
         },
       },
     },
@@ -63,28 +63,9 @@ const Navbar = (props) => {
         position="static"
       >
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <Typography>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              NaapuriApu</Link></Typography>
-          </IconButton>
-          <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              ILMOITUKSET
-            </Link>
-          </Typography>
-          <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/form">
-              LISÄÄ ILMOITUS
-            </Link>
-          </Typography>
-          <Search>
+
+          <Search
+          sx={{margin:"auto"}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -93,25 +74,11 @@ const Navbar = (props) => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-            <Link
-              style={{
-                fontWeight: "semibold",
-                fontSize: "0.9em",
-                textDecoration: "none",
-                color: "white",
-                float: "right",
-              }}
-              to="/form"
-              onClick={props.logout}
-            >
-              KIRJAUDU ULOS
-            </Link>
-          </Typography>
+       
         </Toolbar>
       </AppBar>
     </Box>
   );
 };
 
-export default Navbar;
+export default SearchBar;

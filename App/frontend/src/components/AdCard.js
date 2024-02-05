@@ -21,13 +21,14 @@ const AdCard = (props) => {
   const adImage = props.item.cloudinary_id;
   const myImage = cld.image(adImage);
 
-  myImage.resize(fill().width(605).height(300));
+  myImage.resize(fill().width(400).height(200));
 
   return (
     <Card
       raised="true"
       sx={{
-        maxWidth: 605,
+        maxWidth: 400,
+        maxHeight: 500,
         margin: "auto",
         textAlign: "left",
         marginBottom: "50px",
