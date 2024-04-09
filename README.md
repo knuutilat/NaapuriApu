@@ -8,7 +8,7 @@
 - React
 - MUI
 ## Features
-- Personal account
+- Personal accounts
 - Posting adverts with images
 - Browsing adverts
 ## Status
