@@ -4,6 +4,7 @@
 ## Technologies used
 - Node.js
 - MongoDB
+- Cloudinary
 - React
 - MUI
 ## Features
