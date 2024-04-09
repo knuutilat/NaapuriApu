@@ -1,8 +1,8 @@
 # NaapuriApu 
-> Web application which offers a platform for recycling, selling and lending goods
+> Web application that provides a platform for borrowing and recycling goods
 
 ## Technologies used
-- Node.js
+- Express
 - MongoDB
 - Cloudinary
 - React
